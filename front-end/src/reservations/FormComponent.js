@@ -13,7 +13,8 @@ function FormComponent({ what = 'new' }) {
     reservation_date: formatAsDate(today()),
     reservation_time: formatAsTime(new Date().toTimeString()),
     people: 1,
-    status: 'booked'
+    status: 'booked',
+    // reservation_id: Number(reservation_id)
   };
 
   const history = useHistory();
@@ -24,7 +25,7 @@ function FormComponent({ what = 'new' }) {
     const abortController = new AbortController();
     setError(null);
     if (what === "edit") {
-      listReservationsByID(reservation_id, abortController.signal)
+      listReservationsByID(Number(reservation_id), abortController.signal)
         .then(setFormData)
         .catch(setError);
     }

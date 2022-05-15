@@ -9,7 +9,7 @@ import ReservationsListItem from "../reservations/ListItem";
  */
 function Search() {
   const initialFormState = {
-    mobile_number: 'Mobile Number',
+    mobile_number: '',
   };
   const [reservations, setReservations] = useState([]);
   const [error, setError] = useState('');
@@ -29,7 +29,7 @@ function Search() {
     listReservationsByNumber(formData.mobile_number, abortController.signal)
       .then(data => {
         if (data && data.length) setReservations(data)
-        else setError({ message: "No reservations found" });
+        else setError({ message: `No reservations found for mobile_number=${formData.mobile_number}` });
       })
       .catch(err => setError(err));
   };
@@ -45,7 +45,7 @@ function Search() {
         <tbody>
           <tr>
             <td>
-              <form>
+              <form onSubmit={handleFind}>
                 <input
                   name="mobile_number"
                   onChange={handleChange}
@@ -53,10 +53,8 @@ function Search() {
                   type='tel'
                   placeholder="Enter a customer's phone number"
                   required />
+                  <button type="submit">Submit</button>
               </form>
-            </td>
-            <td>
-              <button type="button" onClick={handleFind}>Find</button>
             </td>
           </tr>
           {reservationsList}
