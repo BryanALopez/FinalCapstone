@@ -5,7 +5,7 @@ import ErrorAlert from '../layout/ErrorAlert';
 
 function FormComponent() {
   const initialFormState = {
-    table_name: 'Table Name',
+    table_name: "",
     capacity: 0,
   };
 
@@ -35,10 +35,10 @@ function FormComponent() {
 
   return (
     <div>
-      <form>
-        <input name="table_name" onChange={handleChange} value={formData.table_name} required/>
+      <form onSubmit={handleSubmit}>
+        <input name="table_name" onChange={handleChange} value={formData.table_name} minLength='2' required/>
         <input name="capacity" onChange={handleChange} value={formData.capacity} type='number' min='1' required/>
-        <button type="button" onClick={handleSubmit}>Submit</button>
+        <button type="submit">Submit</button>
         <button type="button" onClick={handleCancel}>Cancel</button>
       </form>
       <ErrorAlert error={error} />

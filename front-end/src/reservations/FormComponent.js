@@ -61,7 +61,7 @@ function FormComponent({ what = 'new' }) {
 
   return (
     <div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <input name="first_name" onChange={handleChange} value={formData.first_name} readOnly={!isEditable} required />
         <input name="last_name" onChange={handleChange} value={formData.last_name} readOnly={!isEditable} required />
         <input name="mobile_number" onChange={handleChange} value={formData.mobile_number} type='tel' readOnly={!isEditable} required />
@@ -84,7 +84,7 @@ function FormComponent({ what = 'new' }) {
           readOnly={!isEditable} 
           required />
         <input name="people" onChange={handleChange} value={formData.people} type='number' min='1' readOnly={!isEditable} required />
-        <button type="button" onClick={handleSubmit}>Submit</button>
+        <button type="submit">Submit</button>
         <button type="button" onClick={handleCancel}>Cancel</button>
       </form>
       <ErrorAlert error={error} />

@@ -39,10 +39,10 @@ function Dashboard() {
   useEffect(loadTables, []);
 
   const reservationsList = reservations.map(
-    (reservation, index) => <tr key={`resv-${index}`}><ReservationsListItem reservation={reservation} /></tr>
+    (reservation) => <tr key={`resv-${reservation.reservation_id}`}><ReservationsListItem reservation={reservation} /></tr>
   );
   const tablesList = tables.map(
-    (table, index) => <TablesListItem key={`tbl-${index}`} table={table} />
+    (table) => <TablesListItem key={`tbl-${table.table_id}`} table={table} />
   );
 
   return (

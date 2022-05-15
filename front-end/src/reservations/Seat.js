@@ -24,23 +24,31 @@ function Seat() {
         event.preventDefault();
 
         const abortController = new AbortController();
-        reserveTable(e.options[e.selectedIndex].value, reservation_id, abortController.signal)
+        reserveTable(e.options[e.selectedIndex].value, Number(reservation_id), abortController.signal)
             .then(() => history.push(`/dashboard`))
             .catch(setError);
     };
     const handleCancel = () => history.go(-1);
 
-    const tablesList = tables.map((table, index) =>
-        <option key={`opt-${index}`} value={table.table_id}>{table.table_name} - {table.capacity}</option>
-    );
+    const tablesList = [];
+    tables.forEach((table) => {
+        if (table.is_seated === false) {
+            tablesList.push(
+                <option key={table.table_id} id={table.table_name} value={table.table_id}>{table.table_name} - {table.capacity}</option>
+            );
+        }
+    });
 
     return (
         <div>
-            <select name="table_id">
-                {tablesList}
-            </select>
-            <button type="button" onClick={handleSubmit}>Submit</button>
-            <button type="button" onClick={handleCancel}>Cancel</button>
+            <form onSubmit={handleSubmit}>
+                <select name='table_id' required={true}>
+                    <option key="default-tbl-key" defaultValue value="">Table Number - Capacity Amount</option>
+                    {tablesList}
+                </select>
+                <button type="submit">Submit</button>
+                <button type="button" onClick={handleCancel}>Cancel</button>
+            </form>
             <ErrorAlert error={error} />
         </div>
     );

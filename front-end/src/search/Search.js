@@ -35,7 +35,7 @@ function Search() {
   };
 
   const reservationsList = reservations.map(
-    (reservation, index) => <tr key={`rsv-${index}`}><ReservationsListItem reservation={reservation} /></tr>
+    (reservation) => <tr key={`rsv-${reservation.reservation_id}`}><ReservationsListItem reservation={reservation} /></tr>
   );
 
   return (
