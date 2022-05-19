@@ -42,7 +42,7 @@ function Seat() {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <select name='table_id' required={true}>
+                <select name="table_id" required={true}>
                     <option key="default-tbl-key" defaultValue value="">Table Number - Capacity Amount</option>
                     {tablesList}
                 </select>

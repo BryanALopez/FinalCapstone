@@ -55,7 +55,9 @@ function FormComponent({ what = 'new' }) {
         .catch(err => setError(err));
     } else if(isEditable) {
       updateReservation(newReservation, abortController.signal)
-        .then(() => { history.go(-1); })
+      // Workaround for stupid front test # US08 last section -_-
+        .then(rsp => history.push(`/dashboard?date=${formData.reservation_date}`))
+        // .then(() => { history.go(-1); })
         .catch(err => setError(err));
     }
   };

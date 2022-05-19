@@ -114,7 +114,7 @@ async function create(req, res, next) {
   return reservationsService
     .create(res.locals.reservation)
     .then(rsp => {
-      ({ reservation_id, created_at, updated_at, ...data } = rsp);
+      ({ created_at, updated_at, ...data } = rsp);
       return data;
     })
 }

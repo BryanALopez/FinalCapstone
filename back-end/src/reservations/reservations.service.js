@@ -1,7 +1,12 @@
 const knex = require('../db/connection');
 
 function listByDate(date) {
-  return knex('reservations').select('*').where({ "reservation_date": date }).whereNot({ status: 'finished' }).orderBy('reservation_time');
+  return knex('reservations')
+    .select('*')
+    .where({ "reservation_date": date })
+    .whereNot({ status: 'finished' })
+    .whereNot({ status: 'cancelled' })
+    .orderBy('reservation_time');
 }
 
 function listByID(reservation_id) {

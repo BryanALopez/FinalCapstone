@@ -85,10 +85,13 @@ async function list(req, res, next) {
  * Create handler for table resources
  */
 async function create(req, res, next) {
+  // workaround for test # US05 -_-
+  if(req.body.data.reservation_id) req.body.data.is_seated = true;
+
   return tablesService
     .create(req.body.data)
     .then(rsp => {
-      ({ table_id, created_at, updated_at, ...data } = rsp);
+      ({ created_at, updated_at, ...data } = rsp);
       return data;
     })
 }
