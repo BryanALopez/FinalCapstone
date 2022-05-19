@@ -30,14 +30,15 @@ function Seat() {
     };
     const handleCancel = () => history.go(-1);
 
-    const tablesList = [];
-    tables.forEach((table) => {
-        if (table.is_seated === false) {
-            tablesList.push(
-                <option key={table.table_id} id={table.table_name} value={table.table_id}>{table.table_name} - {table.capacity}</option>
-            );
-        }
-    });
+    // const tablesList = [];
+   // tables.forEach((table) => {
+    const tablesList = tables.map((table) => 
+    //    if (table.is_seated === false) {
+       //     tablesList.push(
+                <option key={table.table_id} name={table.table_id} id={table.table_name} value={table.table_id}>{table.table_name} - {table.capacity}</option>
+       //     );
+    //    }
+    );
 
     return (
         <div>
